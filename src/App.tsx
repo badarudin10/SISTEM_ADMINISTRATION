@@ -32,41 +32,39 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-background text-foreground p-6">
-      <div className="max-w-3xl mx-auto space-y-6">
-        <div className="border border-border p-2 rounded-lg bg-card">
-          <img 
-            src="/kop-lpt-uptd-farmasi.png" 
-            alt="Kop LPT UPTD Farmasi" 
-            className="w-full h-auto rounded"
-          />
-        </div>
+    <div style={{ padding: '24px', fontFamily: 'sans-serif', maxWidth: '800px', margin: '0 auto' }}>
+      <header style={{ borderBottom: '1px solid #ccc', paddingBottom: '12px', marginBottom: '24px' }}>
+        <h1 style={{ color: '#0284c7', margin: 0 }}>Asisten LPT Distribusi Obat</h1>
+        <p style={{ color: '#666', margin: '4px 0 0 0' }}>UPTD Farmasi - Sistem Pembuatan BAST & LPT</p>
+      </header>
 
-        <header className="border-b border-border pb-4">
-          <h1 className="text-2xl font-bold font-display text-primary">Asisten LPT Distribusi Obat</h1>
-          <p className="text-sm text-muted-foreground">UPTD Farmasi - Sistem Pembuatan BAST & LPT</p>
-        </header>
+      <main style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+        <button 
+          onClick={handleGenerate}
+          disabled={loading}
+          style={{
+            padding: '12px 24px',
+            backgroundColor: '#0284c7',
+            color: '#fff',
+            border: 'none',
+            borderRadius: '8px',
+            fontWeight: 'bold',
+            fontSize: '16px',
+            cursor: loading ? 'not-allowed' : 'pointer'
+          }}
+        >
+          {loading ? 'Memproses Dokumen DOCX...' : 'Generate Dokumen LPT (.docx)'}
+        </button>
 
-        <main className="space-y-4">
-          <button 
-            onClick={handleGenerate}
-            disabled={loading}
-            className="w-full py-3 bg-primary text-primary-foreground font-bold rounded-lg transition"
-          >
-            {loading ? 'Memproses Dokumen DOCX...' : 'Generate Dokumen LPT (.docx)'}
-          </button>
-
-          {downloadUrl && (
-            <div className="p-4 bg-accent text-accent-foreground rounded-lg text-center">
-              <p className="text-sm font-semibold mb-2">Dokumen Berhasil Dibuat!</p>
-              <a href={downloadUrl} target="_blank" rel="noreferrer" className="underline font-bold text-primary">
-                Download File LPT (.docx)
-              </a>
-            </div>
-          )}
-        </main>
-      </div>
+        {downloadUrl && (
+          <div style={{ padding: '16px', backgroundColor: '#e0f2fe', borderRadius: '8px', textAlign: 'center' }}>
+            <p style={{ margin: '0 0 8px 0', fontWeight: 'bold' }}>Dokumen Berhasil Dibuat!</p>
+            <a href={downloadUrl} target="_blank" rel="noreferrer" style={{ color: '#0284c7', fontWeight: 'bold' }}>
+              Download File LPT (.docx)
+            </a>
+          </div>
+        )}
+      </main>
     </div>
   );
 }
-
